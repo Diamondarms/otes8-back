@@ -13,21 +13,27 @@ const enforceDayOne = (dateString: string): string => {
 // --- USER CONTROLLER ---
 
 export const loginUser = async (req: Request, res: Response) => {
+    console.log("[DEBUG] Controller: loginUser iniciado"); // <--- LOG NOVO
     try {
         const { name } = req.body; 
+        console.log("[DEBUG] Controller: Nome recebido:", name); // <--- LOG NOVO
 
         if (!name) {
             return res.status(400).json({ error: "Nome é obrigatório" });
         }
 
+        console.log("[DEBUG] Controller: Chamando repo.findUserByName..."); // <--- LOG NOVO
         let user = await repo.findUserByName(name);
 
         if (!user) {
+            console.log("[DEBUG] Controller: Usuário não encontrado, criando novo..."); // <--- LOG NOVO
             user = await repo.createUser(name);
         }
 
+        console.log("[DEBUG] Controller: Retornando usuário:", user); // <--- LOG NOVO
         return res.json(user);
     } catch (error) {
+        console.error("[ERRO] Controller loginUser:", error);
         return res.status(500).json({ error: "Erro ao processar usuário" });
     }
 };

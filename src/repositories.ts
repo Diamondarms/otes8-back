@@ -4,15 +4,24 @@ import { RegistroModel, MetaModel, UserModel, CategoryEnum, RecordTypeEnum } fro
 // --- USER REPOSITORY ---
 
 export const findUserByName = async (name: string): Promise<UserModel | null> => {
+    console.log("[DEBUG] Repository: findUserByName - Preparando query...");
     const query = "SELECT * FROM users WHERE username = $1";
     const values = [name];
     
-    const result = await client.query(query, values);
+    try {
+        console.log("[DEBUG] Repository: Executando db.query...");
+        // Aqui é onde costuma travar se o banco não responder
+        const result = await client.query(query, values); 
+        console.log("[DEBUG] Repository: Query retornou. Linhas:", result.rows.length);
 
-    if (result.rows.length > 0) {
-        return result.rows[0];
+        if (result.rows.length > 0) {
+            return result.rows[0];
+        }
+        return null;
+    } catch (err) {
+        console.error("[ERRO FATAL] Repository findUserByName:", err);
+        throw err;
     }
-    return null;
 };
 
 export const createUser = async (name: string): Promise<UserModel> => {
