@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "module": "es2022",
-    "target": "es2022",
-    "moduleResolution": "node",
-    "rootDir": ".", 
+    "module": "commonjs",
+    "target": "es2019",
+    "lib": ["es2019", "dom"],
+    "rootDir": ".",
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noUncheckedSideEffectImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*", "api/**/*"]
 }
