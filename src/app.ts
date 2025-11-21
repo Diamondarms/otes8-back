@@ -1,23 +1,19 @@
 import express from "express"
 import cors from 'cors';
 import router from "./routes";
-import dbConnect from "./db"
 
 async function createApp(){
+    console.log("[DEBUG] Dentro de createApp - Iniciando setup do Express");
     const app = express()
 
-    await dbConnect();
-
-    app.use(cors({
-        origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-        allowedHeaders: ["Content-Type", "Authorization", "x-user-id"],
-        optionsSuccessStatus: 200
-    }));
-    
+    app.use(cors()); 
     app.use(express.json());
-    app.use("/", router)
+    
+    app.get("/health", (req, res) => res.send("API is alive!"));
 
+    app.use("/", router)
+    
+    console.log("[DEBUG] Dentro de createApp - Setup finalizado");
     return app;
 }
 
