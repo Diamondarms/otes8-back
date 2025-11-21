@@ -3,12 +3,10 @@
     "module": "es2015",
     "target": "es6",
     "types": [],
-    "rootDir": "./src",
     "outDir": "./dist",
-
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "moduleDetection": "force"
   }
 }
