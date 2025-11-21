@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "module": "es2015",
-    "target": "es6",
-    "types": [],
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "node",
+    "rootDir": ".", 
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force"
-  }
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "api/**/*"]
 }
